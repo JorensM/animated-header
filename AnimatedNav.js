@@ -52,6 +52,10 @@ class AnimatedNav {
      */
     options;
 
+    /**
+     * 
+     * @param { Partial<AnimatedNavOptions> } [options] 
+     */
     constructor(options) {
 
         this.options = {
