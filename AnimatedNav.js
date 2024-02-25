@@ -63,9 +63,9 @@ class AnimatedNav {
 
         this.navListItems = navList.children;
 
-        activeElement = navListItems.item(0);
+        this.activeElement = /** @type { HTMLElement } */ (this.navListItems.item(0));
 
-        underline = document.querySelector(this.options.underline)
+        this.underline = document.querySelector(this.options.underline)
 
         if(this.options.defaultBehavior) {
             this.addEventListeners();
@@ -74,16 +74,16 @@ class AnimatedNav {
     }
 
     addEventListeners() {
-        for(let i = 0; i < navListItems.length; i++) {
-            const item = navListItems.item(i);
-            item.addEventListener('click', () => selectNavItem(i))
+        for(let i = 0; i < this.navListItems.length; i++) {
+            const item = this.navListItems.item(i);
+            item.addEventListener('click', () => this.selectNavItem(i))
         }
     }
 
     selectNavItem(index) {
 
         // Skip if item is already selected
-        if(index == activeElementIndex) {
+        if(index == this.activeElementIndex) {
             return;
         }
     
@@ -93,17 +93,46 @@ class AnimatedNav {
         this.activeElementIndex = index;
     
         lastItem.classList.remove('selected-item');
-        activeElement.classList.add('selected-item');
+        this.activeElement.classList.add('selected-item');
     
-        const newUnderlinePosition = activeElement.getBoundingClientRect().x;
-        const newUnderlineWidth = activeElement.getBoundingClientRect().width;
+        const newUnderlinePosition = this.activeElement.getBoundingClientRect().x;
+        const newUnderlineWidth = this.activeElement.getBoundingClientRect().width;
     
         if(index > lastItemIndex) {
             console.log('moving')
-            moveUnderlineForward(newUnderlinePosition, newUnderlineWidth);
+            this.moveUnderlineForward(newUnderlinePosition, newUnderlineWidth);
         } else {
-            moveUnderlineBack(newUnderlinePosition, newUnderlineWidth);
+            this.moveUnderlineBack(newUnderlinePosition, newUnderlineWidth);
         }
     
+    }
+
+    moveUnderlineForward(position, width) {
+        const lastPosition = this.underline.getBoundingClientRect().x;
+    
+        const widthBeforeMove = (position + width) - lastPosition
+    
+        // underline.style.left = position + 'px';
+        this.underline.style.width = widthBeforeMove + 'px';
+        setTimeout(() => {
+            this.underline.style.left = position + 'px';
+            this.underline.style.width = width + 'px';
+        }, this.options.transitionLength / 2)
+        
+    }
+    
+    moveUnderlineBack(position, width) {
+        const lastPosition = this.underline.getBoundingClientRect().x;
+        const lastWidth = this.underline.getBoundingClientRect().width;
+    
+        // Need to subtract by 4 because otherwise the transition is not smooth for some reason
+        const widthBeforeMove = (lastPosition + lastWidth) - position;
+    
+        
+        this.underline.style.width = widthBeforeMove + 'px';
+        this.underline.style.left = position + 'px';
+        setTimeout(() => {
+            this.underline.style.width = width + 'px';
+        }, this.options.transitionLength / 2)
     }
 }
