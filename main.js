@@ -3,7 +3,7 @@ const navListItems = document.getElementById('nav').children;
 let activeElement = navListItems.item(0);
 let activeElementIndex = 0;
 const underline = document.getElementById('underline');
-const underlineContainer = document.getElementById('underline-container');
+// const underlineContainer = document.getElementById('underline-container');
 const underlineTransitionLength = 200;
 
 const addEventListeners = () => {
