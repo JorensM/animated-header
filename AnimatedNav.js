@@ -67,6 +67,10 @@ class AnimatedNav {
 
         this.underline = document.querySelector(this.options.underline)
 
+        this.underline.style.left = this.activeElement.getBoundingClientRect().x + 'px';
+        this.underline.style.width = this.activeElement.getBoundingClientRect().width + 'px';
+        this.underline.style.transitionDuration = (this.options.transitionLength / 2) + 'ms';
+
         if(this.options.defaultBehavior) {
             this.addEventListeners();
         }
@@ -89,7 +93,7 @@ class AnimatedNav {
     
         const lastItem = this.activeElement;
         const lastItemIndex = this.activeElementIndex
-        //this.activeElement = this.navListItems.item(index);
+        this.activeElement = /** @type { HTMLElement } */ (this.navListItems.item(index));
         this.activeElementIndex = index;
     
         lastItem.classList.remove('selected-item');
@@ -112,7 +116,6 @@ class AnimatedNav {
     
         const widthBeforeMove = (position + width) - lastPosition
     
-        // underline.style.left = position + 'px';
         this.underline.style.width = widthBeforeMove + 'px';
         setTimeout(() => {
             this.underline.style.left = position + 'px';
@@ -123,12 +126,10 @@ class AnimatedNav {
     
     moveUnderlineBack(position, width) {
         const lastPosition = this.underline.getBoundingClientRect().x;
-        const lastWidth = this.underline.getBoundingClientRect().width;
+        const lastWidth = parseFloat(getComputedStyle(this.underline).width)
     
-        // Need to subtract by 4 because otherwise the transition is not smooth for some reason
         const widthBeforeMove = (lastPosition + lastWidth) - position;
     
-        
         this.underline.style.width = widthBeforeMove + 'px';
         this.underline.style.left = position + 'px';
         setTimeout(() => {

@@ -1,3 +1,5 @@
+const animatedNav = new AnimatedNav();
+
 // // Convert NodeList to array so we can use functions like indexOf
 // const navListItems = document.getElementById('nav').children;
 // let activeElement = navListItems.item(0);
