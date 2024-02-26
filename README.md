@@ -3,8 +3,7 @@
 
 ## Setup
 
-1. download the `AnimatedNav` file and include it in your page via
-`<script/>` tag. 
+1. download the `AnimatedNav.js` file and include it in your page via`<script/>` tag. 
 2. Create an navigation element with items. This element should have an id of `nav` if using default options.
 3. Create an underline element. It can have any style you want, but it should have
 `position: absolute`. This element should have an id of `underline` if using default options.
