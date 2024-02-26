@@ -3,6 +3,11 @@
     <head>
         <link rel='stylesheet' href='style.css' />
         <meta name='viewport' content='width=device-width, initial-scale=1' />
+
+        <script
+            type="module"
+            src="https://cdn.jsdelivr.net/gh/zerodevx/zero-md@2/dist/zero-md.min.js"
+        ></script>
     </head>
     <body>
         <header>
@@ -27,13 +32,8 @@
             </nav>
         </header>
         <main>
-            <p>
-                Just a small component with a neat transition. Try clicking one
-                of the header links!
-            </p>
-            <p>
-                Written with vanilla JS, vanilla HTML and vanilla CSS
-            </p>
+            <p>Click the navigation items to see it in action!</p>
+            <zero-md src='./README.md' />
         </main>
         <script src='AnimatedNav.js'></script>
         <script src='main.js'></script>

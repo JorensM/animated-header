@@ -5,7 +5,7 @@
 
 1. download the `AnimatedNav` file and include it in your page via
 `<script/>` tag. 
-2. Create an navigation element with items. This item should have an id of `nav` if using default options.
+2. Create an navigation element with items. This element should have an id of `nav` if using default options.
 3. Create an underline element. It can have any style you want, but it should have
 `position: absolute`. This element should have an id of `underline` if using default options.
 4. Intanstiate the `AnimatedNav` class and optionally pass a single options object
